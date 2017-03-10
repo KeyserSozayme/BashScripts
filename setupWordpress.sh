@@ -7,6 +7,7 @@ sudo apt -y install lamp-server^
 sudo apt -y install phpmyadmin
 
 cd /tmp
+sudo rm /var/www/index.html
 sudo wget https://wordpress.org/latest.tar.gz
 sudo tar -xvf latest.tar.gz wordpress
 sudo cp -r wordpress/* /var/www/html
