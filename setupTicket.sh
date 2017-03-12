@@ -27,6 +27,8 @@ chmod -R g+s /var/www/html
 find /var/www/html -type d -exec chmod 0755 {} \;
 find /var/www/html -type f -exec chmod 0644 {} \;
 chmod 0666 include/ost-config.php
+cd include/plugins
+wget http://osticket.com/sites/default/files/download/plugin/auth-ldap.phar
 
 echo '!!!'
 echo '!!!'
