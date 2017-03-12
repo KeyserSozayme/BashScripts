@@ -6,7 +6,7 @@ sudo apt -y update
 sudo apt -y upgrade
 sudo apt -y install lamp-server^
 sudo apt -y purge `dpkg -l | grep php| awk '{print $2}' |tr "\n" " "`
-sudo apt -y install php5.6 php5.6-cli php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 php5.6-gd php5.6-imap php5.6-xml unzip openssh-server
+sudo apt -y install php5.6 php5.6-cli php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 php5.6-gd php5.6-imap php5.6-xml php5.6-ldap unzip openssh-server
 sudo apt -y install phpmyadmin
 
 sudo ln -fs /usr/share/phpmyadmin /var/www/phpmyadmin
