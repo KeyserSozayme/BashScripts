@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Installs OSTicket, Apache2, MySql, PHPMyAdmin, and PHP5.6.
+
 cd ~
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt -y update
