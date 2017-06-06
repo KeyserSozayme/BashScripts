@@ -16,6 +16,9 @@ varNameToResolve='www.google.ca'
 
 ## FUNCTIONS
 
+red()   { echo -e "\e[31m$@\e[0m"; }
+green() { echo -e "\e[32m$@\e[0m"; }
+
 usage() {
 # Can't indent the cat block :(
 cat << EOF 
@@ -56,30 +59,30 @@ done
 ## MAIN BIT
 
 while :; do
-    #clear
+    clear
 
     if (timeout 2 ping -c 1 $varGateway &> /dev/null ); then
-        echo "Gateway is UP!"
+        green "Gateway is UP!"
     else
-        echo "Gateway is Down"
+        red "Gateway is Down"
     fi
 
     if (timeout 2 ping -c 1 $varDNS &> /dev/null ); then
-        echo "DNS Server is UP!"
+        green "DNS Server is UP!"
     else
-        echo "DNS Server is Down!"
+        red "DNS Server is Down!"
     fi
 
     if (timeout 2 ping -c 1 $varPingAddress &> /dev/null ); then
-        echo "Ping to '$varPingAddress' SUCCESSFUL!"
+        green "Ping to '$varPingAddress' SUCCESSFUL!"
     else
-        echo "Ping to '$varPingAddress' FAILED!"
+        red "Ping to '$varPingAddress' FAILED!"
     fi
 
     if (timeout 2 nslookup $varNameToResolve $varDNS &> /dev/null ); then
-        echo "Name Resolution is WORKING!"
+        green "Name Resolution is WORKING!"
     else
-        echo "Name Resolution is NOT WOKRING!"
+        red "Name Resolution is NOT WOKRING!"
     fi
 
     sleep 3
