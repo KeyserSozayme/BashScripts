@@ -27,6 +27,7 @@ Usage: $(basename -s .sh $0)
  [-g <Gateway Address>]
  [-p <Address For External Ping>]
  [-n <Name To Resolve>]
+ [-h | --help]
 EOF
 
 }
@@ -36,24 +37,48 @@ debug() {
     echo "varDNS            -> '$varDNS'"
     echo "varPingAddress    -> '$varPingAddress'"
     echo "varNameToResolve  -> '$varNameToResolve'"
+    exit 0
 }
 
 ## ARGUMENT HANDLING
+while [[ $# > 0 ]]; do
+    key="$1"
+    case $key in
+        -x) 
+            debug
+            ;;
 
-while getopts :hd:g:p:n:x opt; do
-    case $opt in
-        h)  usage; exit 0               ;;
-        x)  debug                       ;;
-        d)  varDNS="$OPTARG"            ;;
-        g)  varGateway="$OPTARG"        ;;
-        p)  varPingAddress="$OPTARG"    ;;
-        n)  varNameToResolve="$OPTARG"  ;;
+        -d) 
+            varDNS="$2"
+            shift
+            ;;
+
+        -g) 
+            varGateway="$2"
+            shift
+            ;;
+
+        -p) 
+            varPingAddress="$2"
+            shift
+            ;;
+
+        -n) 
+            varNameToResolve="$2"
+            shift
+            ;;
+
+        -h|--help)
+            usage
+            exit 0
+            ;;
         *)
-            echo "Unrecognized Option '-$OPTARG'"
+            echo "Unrecognized Option '$key'"
             usage
             exit 1
             ;;
     esac
+    shift
 done
 
 ## MAIN BIT
