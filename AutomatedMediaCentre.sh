@@ -27,7 +27,7 @@ main() {
         --def artwork=y             \
         --def clean=y               \
         --def unsorted=y            \
-        --def excludeList AMCExclude.txt
+        --def excludeList=AMCExclude.txt
     green "Finished"
     exit 0
 }
