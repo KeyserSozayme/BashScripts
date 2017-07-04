@@ -1,8 +1,7 @@
 #! /usr/bin/env bash
 
-inputFolder="$HOME/Torrents/Completed"
-outputFolder="$HOME/Media"
-action="move"
+set -o noclobber
+set -o nounset
 
 red()   { echo -e "\e[31m$@\e[0m"; }
 green() { echo -e "\e[32m$@\e[0m"; }
@@ -19,18 +18,27 @@ EOF
 
 main() {
     green "Begin Media Automation..."
-    filebot -script fn:amc          \
-        --output $outputFolder      \
-        -non-strict $inputFolder    \
-        --action $action            \
-        --def subtitles=en          \
-        --def artwork=y             \
-        --def clean=y               \
-        --def unsorted=y            \
+    filebot -script fn:amc                  \
+        --output "$outputFolder"            \
+        -non-strict "$inputFolder"          \
+        --action $action                    \
+        --def subtitles=en                  \
+        --def artwork=y                     \
+        --def clean=y                       \
+        --def unsorted=y                    \
+        --def extra=y                       \
+        --def minLengthMS=10                \
+        --def minFileSize=10                \
+        --def extra=y                       \
         --def excludeList=AMCExclude.txt
     green "Finished"
     exit 0
 }
+
+
+inputFolder="$HOME/Torrents/Completed"
+outputFolder="$HOME/Media"
+action="move"
 
 while [[ $# > 0 ]]; do
     key="$1"
