@@ -13,6 +13,7 @@ Usage: $(basename -s .sh $0)
  [-i | --input <folder to use as input>]
  [-c | --copy (Copy Files instead of move)]
  [-h | --help (Prints Usage)]
+ [--tv (Force TV mode)]
 EOF
 }
 
@@ -30,6 +31,7 @@ main() {
         --def minLengthMS=10                \
         --def minFileSize=10                \
         --def extra=y                       \
+        --def "ut_label=$mode"              \
         --def excludeList=AMCExclude.txt
     green "Finished"
     exit 0
@@ -39,6 +41,7 @@ main() {
 inputFolder="$HOME/Torrents/Completed"
 outputFolder="$HOME/Media"
 action="move"
+mode="Movie"
 
 while [[ $# > 0 ]]; do
     key="$1"
@@ -57,6 +60,14 @@ while [[ $# > 0 ]]; do
             exit 0
             ;;
 
+        --movie)
+            mode="Movie"
+            ;;
+
+        --tv|--series)
+            mode="Series"
+            ;;
+
         *)
             echo "Unrecognized Option '$key'"
             usage
@@ -66,4 +77,10 @@ while [[ $# > 0 ]]; do
     shift
 done
 
-main
+if [[ $(ls "$inputFolder" | wc -l) > 0 ]]; then
+    blue "$inputFolder is Not Empty."
+    main
+else
+    blue "$inputFolder is Empty, Ending..."
+    exit 0
+fi
