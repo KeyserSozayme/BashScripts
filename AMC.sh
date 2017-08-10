@@ -28,7 +28,7 @@ while :; do
         --def minFileSize=10                \
         --def extra=y                       \
         --def ut_label="$AMC_LABEL"         \
-        --def excludeList-AMCExclude.txt    
+        --def excludeList=AMCExclude.txt    
 
     STATUS="$?"
     [[ "$STATUS" = 0 ]] && log "AMC Completed Successfully..." || log "AMC Failure..."
