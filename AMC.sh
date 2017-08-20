@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-WAIT_TIME="86400"
+WAIT_TIME="172800"
 AMC_OUTPUT="$HOME/Media"
 AMC_INPUT="$HOME/Torrents/Completed"
 AMC_ACTION="move"
@@ -27,8 +27,7 @@ while :; do
         --def minLengthMS=10                \
         --def minFileSize=10                \
         --def extra=y                       \
-        --def ut_label="$AMC_LABEL"         \
-        --def excludeList=AMCExclude.txt    
+        --def ut_label="$AMC_LABEL"         
 
     STATUS="$?"
     [[ "$STATUS" = 0 ]] && log "AMC Completed Successfully..." || log "AMC Failure..."
