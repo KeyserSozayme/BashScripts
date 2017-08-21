@@ -1,4 +1,8 @@
 #! /usr/bin/env bash
+set -o xtrace
+
+xset +dpms
+xset dpms 0 5 0
 
 set -o noclobber
 set -o nounset
@@ -20,15 +24,23 @@ depCheck() {
     fi
 }
 
-main() {
+lockA() {
+
     # Take Screenshot Convert And Display
     scrot -mq 75 $scrotOrig
-    convert $scrotOrig -blur 0x7 $scrotBlur
+    convert $scrotOrig -blur 0x14 $scrotBlur
     i3lock -efi $scrotBlur
 
     # Clean Up
     rm -rf $scrotOrig $scrotBlur
 }
 
+lockB() {
+    i3lock -efc 000000
+}
+
 depCheck
-main
+[[ "$1" == A ]] && lockA
+[[ "$1" == B ]] && lockB
+
+xset dpms 0 0 0
