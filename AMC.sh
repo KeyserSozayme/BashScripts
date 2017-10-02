@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 WAIT_TIME="172800"
-AMC_OUTPUT="$HOME/Media"
+AMC_OUTPUT="/Media"
 AMC_INPUT="$HOME/Torrents/Completed"
 AMC_ACTION="move"
 AMC_LABEL=""
