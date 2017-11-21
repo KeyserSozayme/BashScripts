@@ -2,11 +2,11 @@
 
 WAIT_TIME="172800"
 AMC_OUTPUT="/Media"
-AMC_INPUT="$HOME/Torrents/Completed"
+AMC_INPUT="/home/keith/Torrents/Completed"
 AMC_ACTION="move"
 AMC_LABEL=""
 
-log() { echo -e "$(date +"%F %T"): \e[34m$@\e[0m" | tee -a "$LOG_FILE"; }
+log() { echo -e "\e[34m$@\e[0m"; }
 
 while :; do
 
