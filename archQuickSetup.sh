@@ -22,8 +22,8 @@ parted -s /dev/sda set 1 boot on
 echo
 echo "Making Filesystems"
 echo
-mkfs.vfat -V -F32 /dev/sda1
-mkfs.ext4 -V /dev/sda2
+mkfs.vfat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
 
 echo
 echo "Mounting Filesystems"
@@ -47,7 +47,11 @@ echo "Housekeeping"
 echo
 echo "en_CA.UTF-8 UTF-8" >> /mnt/etc/locale.gen
 arch-chroot /mnt "locale-gen"
-arch-chroot /mnt "bootctl install --path=/boot"
+bootctl install --path=/mnt/boot
+cat << EOF | tee /mnt/boot/loader/loader.conf
+default arch
+timeout 1
+EOF
 cat << EOF | tee /mnt/boot/loader/entries/arch.conf
 title ARCH
 linux /vmlinuz-linux
