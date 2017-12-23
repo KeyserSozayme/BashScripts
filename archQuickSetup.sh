@@ -58,9 +58,11 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options rw root=$(blkid -o export /dev/sda2 | grep PARTUUID)
 EOF
-arch-chroot /mnt "passwd"
+read -p "Enter Hostname: " hostname
+echo "$hostname" > /mnt/etc/hostname
+arch-chroot /mnt passwd
 
 echo 
 echo "Done"
 echo
-
+reboot
