@@ -56,7 +56,7 @@ cat << EOF | tee /mnt/boot/loader/entries/arch.conf
 title ARCH
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-rw $(blkid -o export /dev/sda2 | grep PARTUUID)
+options rw root=$(blkid -o export /dev/sda2 | grep PARTUUID)
 EOF
 arch-chroot /mnt "passwd"
 
